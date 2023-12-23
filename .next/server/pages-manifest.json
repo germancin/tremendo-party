@@ -1,0 +1,13 @@
+{
+  "/_document": "pages/_document.js",
+  "/_app": "pages/_app.js",
+  "/404": "pages/404.js",
+  "/_error": "pages/_error.js",
+  "/blank-page": "pages/blank-page.js",
+  "/[locale]/404": "pages/[locale]/404.js",
+  "/": "pages/index.js",
+  "/contact": "pages/contact.js",
+  "/[locale]/contact": "pages/[locale]/contact.js",
+  "/[locale]": "pages/[locale].js",
+  "/[locale]/blank-page": "pages/[locale]/blank-page.js"
+}
