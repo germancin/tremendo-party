@@ -13,18 +13,16 @@ class MyDocument extends Document {
 	  <Html lang={currentLocale} dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}>
 		<HeadComponent />
 		<body>
-		  <div
-			id="preloader"
+		  <div id="preloader"
 			style={{
-			  position: 'fixed',
-			  zIndex: 2001,
-			  background: '#fafafa',
-			  width: '100%',
-			  height: '100%',
+				position: 'fixed',
+				zIndex: 2001,
+				background: '#fafafa',
+				width: '100%',
+				height: '100%',
 			}}
 		  >
-			<img
-			  style={{
+			<img style={{
 				opacity: 0.5,
 				position: 'fixed',
 				top: 'calc(50% - 50px)',
@@ -48,8 +46,7 @@ class MyDocument extends Document {
 					versionID: 'production'
 					})}
 				v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-				}
-				)(document, 'script');
+				})(document, 'script');
 			</script>
 		</body>
 	  </Html>
@@ -58,29 +55,6 @@ class MyDocument extends Document {
 }
 
 MyDocument.getInitialProps = async ctx => {
-  // Resolution order
-  //
-  // On the server:
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. document.getInitialProps
-  // 4. app.render
-  // 5. page.render
-  // 6. document.render
-  //
-  // On the server with error:
-  // 1. document.getInitialProps
-  // 2. app.render
-  // 3. page.render
-  // 4. document.render
-  //
-  // On the client
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. app.render
-  // 4. page.render
-
-  // Render app and page and get the context of the page with collected side effects.
   const originalRenderPage = ctx.renderPage;
 
   const cache = createEmotionCache();
