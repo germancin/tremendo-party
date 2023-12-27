@@ -8,38 +8,52 @@ import i18nextConfig from '../next-i18next.config';
 
 class MyDocument extends Document {
   render() {
-    const currentLocale = this.props.__NEXT_DATA__.query.locale || i18nextConfig.i18n.defaultLocale;
-    return (
-      <Html lang={currentLocale} dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}>
-        <HeadComponent />
-        <body>
-          <div
-            id="preloader"
-            style={{
-              position: 'fixed',
-              zIndex: 2001,
-              background: '#fafafa',
-              width: '100%',
-              height: '100%',
-            }}
-          >
-            <img
-              style={{
-                opacity: 0.5,
-                position: 'fixed',
-                top: 'calc(50% - 50px)',
-                left: 'calc(50% - 50px)'
-              }}
-              src="/images/loading.gif"
-              alt="loading"
-            />
-          </div>
-          {getInitColorSchemeScript()}
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
+	const currentLocale = this.props.__NEXT_DATA__.query.locale || i18nextConfig.i18n.defaultLocale;
+	return (
+	  <Html lang={currentLocale} dir={currentLocale === 'ar' ? 'rtl' : 'ltr'}>
+		<HeadComponent />
+		<body>
+		  <div
+			id="preloader"
+			style={{
+			  position: 'fixed',
+			  zIndex: 2001,
+			  background: '#fafafa',
+			  width: '100%',
+			  height: '100%',
+			}}
+		  >
+			<img
+			  style={{
+				opacity: 0.5,
+				position: 'fixed',
+				top: 'calc(50% - 50px)',
+				left: 'calc(50% - 50px)'
+			  }}
+			  src="/images/loading.gif"
+			  alt="loading"
+			/>
+		  </div>
+		  {getInitColorSchemeScript()}
+		  <Main />
+		  <NextScript />
+
+		  <script type="text/javascript">
+			(function(d, t) {
+				let v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+				v.onload = function() {
+					window.voiceflow.chat.load({
+					verify: { projectID: '65872f550f169661f947f14b' },
+					url: 'https://general-runtime.voiceflow.com',
+					versionID: 'production'
+					})}
+				v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+				}
+				)(document, 'script');
+			</script>
+		</body>
+	  </Html>
+	);
   }
 }
 
@@ -73,26 +87,26 @@ MyDocument.getInitialProps = async ctx => {
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
   ctx.renderPage = () =>
-    originalRenderPage({ enhanceApp: (App) => (function EnhanceApp(props) { // eslint-disable-line
-      return <App emotionCache={cache} {...props} />;
-    }),
+	originalRenderPage({ enhanceApp: (App) => (function EnhanceApp(props) { // eslint-disable-line
+	  return <App emotionCache={cache} {...props} />;
+	}),
   });
 
   const initialProps = await Document.getInitialProps(ctx);
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
-    <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
-      key={style.key}
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: style.css }}
-    />
+	<style
+	  data-emotion={`${style.key} ${style.ids.join(' ')}`}
+	  key={style.key}
+	  // eslint-disable-next-line react/no-danger
+	  dangerouslySetInnerHTML={{ __html: style.css }}
+	/>
   ));
 
   return {
-    ...initialProps,
-    emotionStyleTags,
-    namespacesRequired: ['common', 'mobile-landing'],
+	...initialProps,
+	emotionStyleTags,
+	namespacesRequired: ['common', 'mobile-landing'],
   };
 };
 
