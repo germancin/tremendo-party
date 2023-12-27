@@ -223,28 +223,44 @@ class MyDocument extends next_document["default"] {
     const currentLocale = this.props.__NEXT_DATA__.query.locale || (next_i18next_config_default()).i18n.defaultLocale;
     return /*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Html, {
       lang: currentLocale,
-      dir: currentLocale === 'ar' ? 'rtl' : 'ltr',
+      dir: currentLocale === "ar" ? "rtl" : "ltr",
       children: [/*#__PURE__*/jsx_runtime_.jsx(head, {}), /*#__PURE__*/(0,jsx_runtime_.jsxs)("body", {
         children: [/*#__PURE__*/jsx_runtime_.jsx("div", {
           id: "preloader",
           style: {
-            position: 'fixed',
+            position: "fixed",
             zIndex: 2001,
-            background: '#fafafa',
-            width: '100%',
-            height: '100%'
+            background: "#fafafa",
+            width: "100%",
+            height: "100%"
           },
           children: /*#__PURE__*/jsx_runtime_.jsx("img", {
             style: {
               opacity: 0.5,
-              position: 'fixed',
-              top: 'calc(50% - 50px)',
-              left: 'calc(50% - 50px)'
+              position: "fixed",
+              top: "calc(50% - 50px)",
+              left: "calc(50% - 50px)"
             },
             src: "/images/loading.gif",
             alt: "loading"
           })
-        }), (0,styles_.getInitColorSchemeScript)(), /*#__PURE__*/jsx_runtime_.jsx(next_document.Main, {}), /*#__PURE__*/jsx_runtime_.jsx(next_document.NextScript, {})]
+        }), (0,styles_.getInitColorSchemeScript)(), /*#__PURE__*/jsx_runtime_.jsx(next_document.Main, {}), /*#__PURE__*/jsx_runtime_.jsx(next_document.NextScript, {}), /*#__PURE__*/jsx_runtime_.jsx("script", {
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML: {
+            __html: `
+			(function(d, t) {
+				var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+				v.onload = function() {
+				window.voiceflow.chat.load({
+					verify: { projectID: '65872f550f169661f947f14b' },
+					url: 'https://general-runtime.voiceflow.com',
+					versionID: 'production'
+				})}
+				v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "module"; s.parentNode.insertBefore(v, s);
+			})(document, 'script');
+			`
+          }
+        })]
       })]
     });
   }
@@ -252,28 +268,6 @@ class MyDocument extends next_document["default"] {
 }
 
 MyDocument.getInitialProps = async ctx => {
-  // Resolution order
-  //
-  // On the server:
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. document.getInitialProps
-  // 4. app.render
-  // 5. page.render
-  // 6. document.render
-  //
-  // On the server with error:
-  // 1. document.getInitialProps
-  // 2. app.render
-  // 3. page.render
-  // 4. document.render
-  //
-  // On the client
-  // 1. app.getInitialProps
-  // 2. page.getInitialProps
-  // 3. app.render
-  // 4. page.render
-  // Render app and page and get the context of the page with collected side effects.
   const originalRenderPage = ctx.renderPage;
   const cache = createEmotionCache();
   const {
@@ -292,7 +286,7 @@ MyDocument.getInitialProps = async ctx => {
   const initialProps = await next_document["default"].getInitialProps(ctx);
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map(style => /*#__PURE__*/jsx_runtime_.jsx("style", {
-    "data-emotion": `${style.key} ${style.ids.join(' ')}`,
+    "data-emotion": `${style.key} ${style.ids.join(" ")}`,
     // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML: {
       __html: style.css
@@ -300,7 +294,7 @@ MyDocument.getInitialProps = async ctx => {
   }, style.key));
   return _objectSpread(_objectSpread({}, initialProps), {}, {
     emotionStyleTags,
-    namespacesRequired: ['common', 'mobile-landing']
+    namespacesRequired: ["common", "mobile-landing"]
   });
 };
 
