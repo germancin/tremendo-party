@@ -248,16 +248,16 @@ class MyDocument extends next_document["default"] {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML: {
             __html: `
-			(function(d, t) {
-				var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-				v.onload = function() {
-				window.voiceflow.chat.load({
-					verify: { projectID: '65872f550f169661f947f14b' },
-					url: 'https://general-runtime.voiceflow.com',
-					versionID: 'production'
-				})}
-				v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "module"; s.parentNode.insertBefore(v, s);
-			})(document, 'script');
+            
+              (function(d) {
+                var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                v.onload = function() {
+                  window.myChatbot.load();
+                };
+                v.src = "http://cdn-tremendo-party.s3-website-us-east-1.amazonaws.com/bundle.js";
+                v.type = "text/javascript";
+                s.parentNode.insertBefore(v, s);
+              })(document);
 			`
           }
         })]
