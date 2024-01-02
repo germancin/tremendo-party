@@ -257,7 +257,7 @@ class MyDocument extends next_document["default"] {
                         window.myChatbot.init(chatbotTitle);
                     }
                 };
-                v.src = "http://cdn-tremendo-party.s3-website-us-east-1.amazonaws.com/bundle.js";
+                v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
                 v.type = "text/javascript";
                 s.parentNode.insertBefore(v, s);
             })(document);
