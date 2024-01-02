@@ -43,20 +43,18 @@ class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-            
               (function(d) {
                 var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
                 v.onload = function() {
                     if (window.myChatbot) {
-                        const chatbotTitle = "Tremendo Party!";
+                        const chatbotTitle = "Tremendo Party";
                         window.myChatbot.init(chatbotTitle);
                     }
                 };
                 v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
                 v.type = "text/javascript";
                 s.parentNode.insertBefore(v, s);
-            })(document);
-			`,
+            })(document);`,
             }}
           />
         </body>
