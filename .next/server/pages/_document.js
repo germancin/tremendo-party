@@ -252,12 +252,15 @@ class MyDocument extends next_document["default"] {
               (function(d) {
                 var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
                 v.onload = function() {
-                  window.myChatbot.load();
+                    if (window.myChatbot) {
+                        const chatbotTitle = "Tremendo Party!";
+                        window.myChatbot.init(chatbotTitle);
+                    }
                 };
                 v.src = "http://cdn-tremendo-party.s3-website-us-east-1.amazonaws.com/bundle.js";
                 v.type = "text/javascript";
                 s.parentNode.insertBefore(v, s);
-              })(document);
+            })(document);
 			`
           }
         })]
