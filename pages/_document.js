@@ -47,10 +47,10 @@ class MyDocument extends Document {
                 var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
                 v.onload = function() {
                     if (window.myChatbot) {
-                        const chatbotTitle = "Tremendo Party - AI Assistant";
+                        const chatbotTitle = "Tremendo Party";
                         const chatbotLogo = "https://d204nmcbcidqyp.cloudfront.net/tremendo-party-logo.png";
-                        const subTitle = "The way to go for planning events.";
-                        window.myChatbot.init(chatbotTitle, chatbotLogo, subTitle); // Adjusted to match the signature of init function
+                        const subTitle = "Unleash flavors with Tremendo Party — Your AI mix master!";
+                        window.myChatbot.init(chatbotTitle, subTitle chatbotLogo ); // Adjusted to match the signature of init function
                     }
                 };
                 v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
