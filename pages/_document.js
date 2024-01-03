@@ -47,12 +47,15 @@ class MyDocument extends Document {
                 var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
                 v.onload = function() {
                     if (window.myChatbot) {
-                        const chatbotTitle = "Tremendo Party";
-                        window.myChatbot.init(chatbotTitle);
+                        const chatbotTitle = "Tremendo Party - AI Assistant";
+                        const chatbotLogo = "https://d204nmcbcidqyp.cloudfront.net/tremendo-party-logo.png";
+                        const subTitle = "The way to go for planning events.";
+                        window.myChatbot.init(chatbotTitle, chatbotLogo, subTitle); // Adjusted to match the signature of init function
                     }
                 };
                 v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
                 v.type = "text/javascript";
+                v.defer = true; // Include defer attribute if needed
                 s.parentNode.insertBefore(v, s);
             })(document);`,
             }}
