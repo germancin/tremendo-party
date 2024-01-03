@@ -50,7 +50,7 @@ class MyDocument extends Document {
                         const chatbotTitle = "Tremendo Party";
                         const chatbotLogo = "https://d204nmcbcidqyp.cloudfront.net/tremendo-party-logo.png";
                         const subTitle = "Unleash flavors with Tremendo Party — Your AI mix master!";
-                        window.myChatbot.init(chatbotTitle, subTitle chatbotLogo ); // Adjusted to match the signature of init function
+                        window.myChatbot.init(chatbotTitle, subTitle, chatbotLogo ); // Adjusted to match the signature of init function
                     }
                 };
                 v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
