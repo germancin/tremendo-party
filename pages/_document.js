@@ -43,21 +43,26 @@ class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-              (function(d) {
-                var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-                v.onload = function() {
-                    if (window.myChatbot) {
-                        const chatbotTitle = "Tremendo Party";
-                        const chatbotLogo = "https://d204nmcbcidqyp.cloudfront.net/tremendo-party-logo.png";
-                        const subTitle = "Unleash flavors with Tremendo Party. Your AI mix master!";
-                        window.myChatbot.init(chatbotTitle, subTitle, chatbotLogo ); // Adjusted to match the signature of init function
-                    }
-                };
-                v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
-                v.type = "text/javascript";
-                v.defer = true; // Include defer attribute if needed
-                s.parentNode.insertBefore(v, s);
-            })(document);`,
+                (function(d) {
+                  var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                  v.onload = function() {
+                      const path = window.location.pathname;
+                      const clientId = path.split('/')[2];
+                      console.log("the clientID:::", clientId);
+
+                      if (window.myChatbot && clientId) {
+                          const chatbotTitle = "Tremendo Party";
+                          const chatbotLogo = "https://d204nmcbcidqyp.cloudfront.net/tremendo-party-logo.png";
+                          const subTitle = "Your AI mixer assistant!";
+                          window.myChatbot.init({chatbotTitle, subTitle, chatbotLogo, clientId:clientId });
+                      }
+                  };
+                  v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
+                  v.type = "text/javascript";
+                  v.defer = true;
+                  s.parentNode.insertBefore(v, s);
+                })(document);
+              `,
             }}
           />
         </body>
@@ -72,11 +77,8 @@ MyDocument.getInitialProps = async (ctx) => {
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) =>
-        function EnhanceApp(props) {
-          // eslint-disable-line
+  ctx.renderPage = () => originalRenderPage({
+      enhanceApp: (App) => function EnhanceApp(props) {
           return <App emotionCache={cache} {...props} />;
         },
     });
@@ -85,7 +87,7 @@ MyDocument.getInitialProps = async (ctx) => {
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
     <style
-      data-emotion={`${style.key} ${style.ids.join(" ")}`}
+      data-emotion={`${style.key} ${style.ids.join(' ')}`}
       key={style.key}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}
