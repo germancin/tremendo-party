@@ -50,10 +50,11 @@ class MyDocument extends Document {
                       const clientId = path.split('/')[2];
                       console.log("the clientID:::", clientId);
 
-                      if (window.myChatbot && clientId) {
+                      if (window.myChatbot) {
                           const chatbotTitle = "Tremendo Party";
                           const chatbotLogo = "https://d204nmcbcidqyp.cloudfront.net/tremendo-party-logo.png";
                           const subTitle = "Your AI mixer assistant!";
+                          const clientId = "tremendo"
                           window.myChatbot.init({chatbotTitle, subTitle, chatbotLogo, clientId:clientId });
                       }
                   };
