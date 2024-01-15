@@ -47,15 +47,25 @@ class MyDocument extends Document {
                   var v = d.createElement('script'), s = d.getElementsByTagName('script')[0];
                   v.onload = function() {
                       const path = window.location.pathname;
-                      const clientId = path.split('/')[2];
-                      console.log("the clientID:::", clientId);
+                      let clientId = path.split('/')[2];
+                      console.log("Original clientId:", clientId); // Log the original clientId
+                      const toTitleCase = (str) => {
+                        return str
+                          .toLowerCase() 
+                          .replace(/-/g, ' ') 
+                          .split(' ') 
+                          .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
+                          .join(' ');
+                      };
+
+                      // Only convert clientId to Title Case if it's not empty or undefined.
+                      let clientIdLabel = clientId ? toTitleCase(clientId) : "";
 
                       if (window.myChatbot) {
-                          const chatbotTitle = "Tremendo Party";
+                          const chatbotTitle = clientIdLabel ? clientIdLabel + " Mixer AI": "Tremendo Party";
                           const chatbotLogo = "https://d204nmcbcidqyp.cloudfront.net/tremendo-party-logo.png";
-                          const subTitle = "Your AI mixer assistant!";
-                          const clientId = "tremendo"
-                          window.myChatbot.init({chatbotTitle, subTitle, chatbotLogo, clientId:clientId });
+                          const subTitle = clientIdLabel + " Your AI mixer assistant!";
+                          window.myChatbot.init({chatbotTitle, subTitle, chatbotLogo, clientId });
                       }
                   };
                   v.src = "https://d204nmcbcidqyp.cloudfront.net/bundle.js";
